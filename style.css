@@ -1,33 +1,52 @@
-/* Glassmorphism custom styles */
+/* Smooth Scroll & Native iOS Bounce */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  /* Mencegah lag repaint saat scroll */
+  overscroll-behavior-y: none;
+}
+
+/* Glassmorphism dioptimalkan (GPU Friendly) */
 .glass-panel {
-  background: rgba(18, 30, 56, 0.45);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(18, 30, 56, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  will-change: backdrop-filter;
 }
+
 .glass-card {
-  background: linear-gradient(135deg, rgba(128, 0, 32, 0.22) 0%, rgba(11, 29, 58, 0.45) 100%);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
+  background: linear-gradient(135deg, rgba(128, 0, 32, 0.35) 0%, rgba(11, 29, 58, 0.65) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+  will-change: backdrop-filter;
 }
+
 .glass-input {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.25s ease;
+  backdrop-filter: blur(8px); /* Diturunkan sedikit dari 12px agar input sangat responsif saat diketik */
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
+
 .glass-input:focus {
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.5);
   outline: none;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
 }
-/* Custom scrollbar iOS style */
+
+/* Custom Scrollbar iOS Style */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -39,35 +58,36 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
 }
-/* Memastikan seluruh teks input, select, textarea, dan popup opsi berwarna hitam */
+
+/* Penegasan Warna Teks Form Staf (Hitam Pekat) */
 select,
-textarea,
-input {
-  color: #0f172a !important; /* Slate 900 / Hitam */
+textarea {
+  color: #0f172a !important;
 }
 
-/* Memastikan latar belakang popup dropdown dan teks opsinya tetap hitam terbaca */
 select option {
   background-color: #ffffff !important;
   color: #0f172a !important;
   font-weight: 500;
 }
 
-/* Warna placeholder agar abu-abu terbaca */
 ::placeholder {
   color: #64748b !important;
   opacity: 1;
 }
-/* Khusus teks di modal login admin jadi putih */
-#login-modal input {
+
+/* Form Catatan Staf Tetap Hitam */
+#input-notes {
+  color: #0f172a !important;
+}
+
+/* Modal Login Admin & Modal Staf Baru (Teks Putih) */
+#login-modal input,
+#staff-modal input {
   color: #ffffff !important;
 }
 
-#login-modal input::placeholder {
+#login-modal input::placeholder,
+#staff-modal input::placeholder {
   color: rgba(255, 255, 255, 0.45) !important;
-}
-
-/* Memastikan input catatan staf tetap hitam pekat */
-#input-notes {
-  color: #0f172a !important;
 }

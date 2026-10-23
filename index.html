@@ -36,9 +36,9 @@
   </head>
   <body class="min-h-screen font-sans text-slate-100 bg-gradient-to-br from-maroon-dark via-[#1e0a20] to-navy-dark relative overflow-x-hidden pb-12 selection:bg-pink-500 selection:text-white">
     <!-- Background Orbs for dynamic lighting -->
-    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-maroon-main opacity-30 filter blur-[120px] pointer-events-none -z-10 animate-pulse"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[550px] h-[550px] rounded-full bg-navy-bright opacity-35 filter blur-[130px] pointer-events-none -z-10"></div>
-    <div class="fixed top-[40%] right-[30%] w-[350px] h-[350px] rounded-full bg-[#990033] opacity-20 filter blur-[100px] pointer-events-none -z-10"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[380px] h-[380px] sm:w-[500px] sm:h-[500px] rounded-full bg-maroon-main/25 blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[380px] h-[380px] sm:w-[500px] sm:h-[500px] rounded-full bg-navy-bright/30 blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform"></div>
+    <div class="fixed top-[40%] right-[20%] w-[250px] h-[250px] rounded-full bg-[#990033]/15 blur-2xl pointer-events-none -z-10 transform-gpu will-change-transform"></div>
 
     <!-- Notification Toast Modal (iPhone Dynamic Island / Alert style) -->
     <div id="ios-alert-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
@@ -51,39 +51,45 @@
     </div>
 
     <!-- ================= STICKY FROSTED GLASS NAVBAR ================= -->
-    <nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/40 border-b border-white/10 shadow-lg shadow-black/20 transition-all duration-300">
-      <div class="max-w-5xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 sm:gap-4">
+    <!-- ================= STICKY FROSTED GLASS NAVBAR ================= -->
+    <nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/60 border-b border-white/10 shadow-lg shadow-black/20 transition-all duration-300">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-1.5 sm:gap-4">
         <!-- Kiri: Zona Waktu WITA -->
-        <div class="flex items-center space-x-1.5 sm:space-x-2 text-[11px] sm:text-xs font-semibold tracking-wide text-slate-300 shrink-0">
-          <i data-lucide="radio" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0"></i>
-          <span class="hidden md:inline">ZONA WAKTU:</span>
-          <span class="bg-white/10 px-2 py-0.5 rounded-full text-white border border-white/10 text-[10px] sm:text-xs font-mono"> WITA (UTC+8) </span>
+        <div class="flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-semibold tracking-wide text-slate-300 shrink-0">
+          <i data-lucide="radio" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+          <span class="hidden sm:inline">ZONA WAKTU:</span>
+          <span class="bg-white/10 px-1.5 sm:px-2 py-0.5 rounded-full text-white border border-white/10 text-[9px] sm:text-xs font-mono"> WITA </span>
         </div>
 
         <!-- Tengah: Jam Digital Realtime -->
-        <div class="flex items-center space-x-1.5 sm:space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-          <span class="relative flex h-2 w-2">
+        <div class="flex items-center space-x-1 sm:space-x-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+          <span class="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500"></span>
           </span>
-          <div id="live-clock" class="text-xs sm:text-base md:text-lg font-bold tracking-wider font-mono text-white whitespace-nowrap">00:00:00 WITA</div>
+          <div id="live-clock" class="text-[11px] sm:text-sm md:text-base font-bold tracking-wider font-mono text-white whitespace-nowrap">00:00:00 WITA</div>
         </div>
 
         <!-- Kanan: Admin Mode Badge & Tombol Login/Logout -->
-        <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+        <div class="flex items-center space-x-1 sm:space-x-2 shrink-0">
           <div id="admin-badge" class="hidden text-[10px] sm:text-xs bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-2 sm:px-3 py-1 rounded-full font-medium items-center space-x-1 sm:space-x-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span class="hidden sm:inline">Admin Mode</span>
             <span class="sm:hidden">Admin</span>
           </div>
 
+          <!-- Tombol Admin Login Lebih Lega di Smartphone -->
           <button
             id="auth-btn"
             onclick="toggleAuthAction()"
-            class="flex items-center space-x-1 sm:space-x-1.5 py-1 sm:py-1.5 px-2.5 sm:px-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-[11px] sm:text-xs font-medium text-slate-200 transition border border-white/15 cursor-pointer whitespace-nowrap"
+            class="flex items-center space-x-1 sm:space-x-1.5 py-1.5 px-2.5 sm:px-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-[11px] sm:text-xs font-medium text-slate-200 transition border border-white/15 cursor-pointer whitespace-nowrap"
           >
-            <i id="auth-icon" data-lucide="lock" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-300"></i>
-            <span id="auth-label">Admin Login</span>
+            <i id="auth-icon" data-lucide="lock" class="w-3.5 h-3.5 text-pink-300 shrink-0"></i>
+            <!-- Di layar HP hanya tampil kata 'Admin', di tablet/desktop tampil 'Admin Login' -->
+            <span id="auth-label">
+              <span class="inline sm:hidden">Admin</span>
+              <span class="hidden sm:inline">Login</span>
+            </span>
           </button>
         </div>
       </div>
@@ -559,7 +565,7 @@
           adminPanel.classList.remove('hidden');
           adminPanel.classList.add('flex');
 
-          authLabel.textContent = 'Logout Admin';
+          authLabel.innerHTML = '<span class="inline sm:hidden">Keluar</span><span class="hidden sm:inline">Admin</span>';
           authIcon.setAttribute('data-lucide', 'log-out');
           authBtn.className = 'flex items-center space-x-1.5 py-1.5 px-3 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 active:scale-95 text-xs font-semibold transition border border-rose-500/40';
           adminBadge.classList.remove('hidden');
@@ -577,7 +583,7 @@
           adminPanel.classList.add('hidden');
           adminPanel.classList.remove('flex');
 
-          authLabel.textContent = 'Admin Login';
+          authLabel.innerHTML = '<span class="inline sm:hidden">Admin</span><span class="hidden sm:inline">Login</span>';
           authIcon.setAttribute('data-lucide', 'lock');
           authBtn.className = 'flex items-center space-x-1.5 py-1.5 px-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-medium text-slate-200 transition border border-white/15';
           adminBadge.classList.add('hidden');
